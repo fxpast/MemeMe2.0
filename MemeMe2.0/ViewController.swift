@@ -116,7 +116,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         
         imagePickerView.image=image
         imagePickerView.contentMode=UIViewContentMode.Redraw
-        TopTextFiled.text=image.description
         
         shareButton.enabled = true
 
@@ -139,11 +138,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         //todo : save meme
         SaveMeme()
         //todo : share meme
+  
+        //UIActivityTypeMail, UIActivityTypeMessage, UIActivityTypePostToTwitter, UIActivityTypePostToFacebook
         let activitiesVC = UIActivityViewController(activityItems: [meme.memedImage], applicationActivities: nil)
+        
+         activitiesVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypePostToTencentWeibo, UIActivityTypePostToVimeo, UIActivityTypePostToFlickr,UIActivityTypeAddToReadingList, UIActivityTypeSaveToCameraRoll, UIActivityTypeAssignToContact, UIActivityTypeCopyToPasteboard, UIActivityTypePrint, UIActivityTypePostToWeibo]
+        
+        
         presentViewController(activitiesVC, animated: true, completion: nil)
         
         
-            }
+    }
     
     
     func SaveMeme() {

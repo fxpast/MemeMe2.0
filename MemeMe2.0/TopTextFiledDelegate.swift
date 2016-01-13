@@ -12,8 +12,9 @@ import UIKit
 
 class TopTextFiledDelegate : NSObject, UITextFieldDelegate {
     
-    
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        return false
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
+        
     }
 }
