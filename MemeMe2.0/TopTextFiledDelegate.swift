@@ -17,4 +17,10 @@ class TopTextFiledDelegate : NSObject, UITextFieldDelegate {
         return true
         
     }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        textField.text=""
+        return true
+    }
+    
 }

@@ -19,4 +19,10 @@ class BottomTextFiledDelegate : NSObject, UITextFieldDelegate {
         
     }
     
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        textField.text=""
+        return true
+    }
+    
 }

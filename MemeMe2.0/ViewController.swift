@@ -31,7 +31,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     var meme:MemeMod!
     
     let memeTextAttributes = [
-    NSStrokeColorAttributeName:UIColor.blackColor(),
+    NSStrokeColorAttributeName:UIColor.whiteColor(),
     NSForegroundColorAttributeName:UIColor.whiteColor(),
     NSFontAttributeName:UIFont(name:"HelveticaNeue-CondensedBlack", size: 40)!,
     NSStrokeWidthAttributeName:3.0]
@@ -42,10 +42,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         // Do any additional setup after loading the view, typically from a nib.
         TopTextFiled.defaultTextAttributes=memeTextAttributes
         TopTextFiled.textAlignment=NSTextAlignment.Center
+        TopTextFiled.borderStyle=UITextBorderStyle.None
+        TopTextFiled.delegate=topdelegate
+        
         BottomTextFiled.defaultTextAttributes=memeTextAttributes
         BottomTextFiled.textAlignment=NSTextAlignment.Center
-        TopTextFiled.delegate=topdelegate
+        BottomTextFiled.borderStyle=UITextBorderStyle.None
         BottomTextFiled.delegate=bottomdelegate
+        
         shareButton.enabled = false
     }
 
@@ -75,11 +79,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         
     }
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        
-        
-        return true
-    }
+    
     
     func unsubscribeFromKeyboardNotifications() {
 
@@ -133,22 +133,32 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         
     }
     
-    @IBAction func shareAction(sender: AnyObject) {
+        
+    
+   
+    
+    @IBAction func actionShare(sender: AnyObject) {
+        
         
         //todo : save meme
         SaveMeme()
+        
         //todo : share meme
-  
-        //UIActivityTypeMail, UIActivityTypeMessage, UIActivityTypePostToTwitter, UIActivityTypePostToFacebook
         let activitiesVC = UIActivityViewController(activityItems: [meme.memedImage], applicationActivities: nil)
-        
-         activitiesVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypePostToTencentWeibo, UIActivityTypePostToVimeo, UIActivityTypePostToFlickr,UIActivityTypeAddToReadingList, UIActivityTypeSaveToCameraRoll, UIActivityTypeAssignToContact, UIActivityTypeCopyToPasteboard, UIActivityTypePrint, UIActivityTypePostToWeibo]
-        
-        
+     
+        //UIActivityTypeMail, UIActivityTypeMessage, UIActivityTypePostToTwitter, UIActivityTypePostToFacebook
+        activitiesVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypePostToTencentWeibo, UIActivityTypePostToVimeo, UIActivityTypePostToFlickr,UIActivityTypeAddToReadingList, UIActivityTypeSaveToCameraRoll, UIActivityTypeAssignToContact, UIActivityTypeCopyToPasteboard, UIActivityTypePrint, UIActivityTypePostToWeibo]
+    
+     
+        activitiesVC.popoverPresentationController?.barButtonItem=self.shareButton
         presentViewController(activitiesVC, animated: true, completion: nil)
         
         
+        
+        
     }
+    
+    
     
     
     func SaveMeme() {
