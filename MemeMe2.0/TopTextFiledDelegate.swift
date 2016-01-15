@@ -14,6 +14,7 @@ class TopTextFiledDelegate : NSObject, UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.endEditing(true)
+        textField.tag=0
         return true
         
     }
@@ -21,6 +22,13 @@ class TopTextFiledDelegate : NSObject, UITextFieldDelegate {
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         textField.text=""
         return true
+    }
+    
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+        textField.tag=99
+        
     }
     
 }

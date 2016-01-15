@@ -6,6 +6,7 @@
 //  Copyright © 2016 Pastouret Roger. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 
@@ -13,7 +14,7 @@ import UIKit
 
 
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
+class EditorView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
   
@@ -28,6 +29,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     
     let topdelegate = TopTextFiledDelegate()
     let bottomdelegate = BottomTextFiledDelegate()
+    
     var meme:MemeMod!
     
     let memeTextAttributes = [
@@ -90,12 +92,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
 
     func keyboardWillShow(notification:NSNotification) {
     
-        view.frame.origin.y-=getkeyboardHeight(notification)
+        if TopTextFiled.tag != 99 {
+            view.frame.origin.y-=getkeyboardHeight(notification)
+        }
+        
     }
     
     func keyboardWillHide(notification:NSNotification) {
         
-        view.frame.origin.y+=getkeyboardHeight(notification)
+        if TopTextFiled.tag != 99 {
+            view.frame.origin.y+=getkeyboardHeight(notification)
+        }
+        
+        
     }
     
     
@@ -108,7 +117,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     }
     
 
-    
 
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
@@ -151,9 +159,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     
      
         activitiesVC.popoverPresentationController?.barButtonItem=self.shareButton
-        presentViewController(activitiesVC, animated: true, completion: nil)
+        
+        presentViewController(activitiesVC, animated: true, completion: {
+                let sentmemes = SentMemes.singleton
+                if let _ = sentmemes.memeArray {
+                sentmemes.memeArray.append(self.meme)
+                }
+                else {
+                sentmemes.memeArray=[self.meme]
+                }
+        })
         
         
+      
         
         
     }
