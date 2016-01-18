@@ -9,24 +9,11 @@
 import Foundation
 import UIKit
 
-class MemeMod: NSObject {
+struct MemeMod {
     
     var textTop:String
     var textBottom:String
     var imageOrigin:UIImage
     var memedImage:UIImage
-    
-    
-    init(textTop:String, textBottom:String, imageOrigin:UIImage, memedImage:UIImage) {
-        
-        self.textTop=textTop
-        self.textBottom=textBottom
-        self.imageOrigin=imageOrigin
-        self.memedImage=memedImage
-        
-    }
-    
-    
-  
     
 }

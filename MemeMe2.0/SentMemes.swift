@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SentMemes: NSObject {
+class SentMemes {
     static let singleton = SentMemes()
     var memeArray:[MemeMod]!
     

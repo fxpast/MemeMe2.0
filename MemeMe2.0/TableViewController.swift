@@ -10,21 +10,24 @@ import Foundation
 import UIKit
 
 class TableViewController: UITableViewController {
-
     
-
+    
+    
     override func viewWillAppear(animated: Bool) {
         
+        super.viewWillAppear(animated)
         
         let sentmemes = SentMemes.singleton
         if let _ = sentmemes.memeArray {
-            self.tableView.reloadData()
+            tableView.reloadData()
         }
         
     }
     
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+       super.tableView(tableView, numberOfRowsInSection: section)
         
         let sentmemes = SentMemes.singleton
         if let _ = sentmemes.memeArray {
@@ -33,19 +36,16 @@ class TableViewController: UITableViewController {
         else {
             return 0
         }
-
+        
     }
     
 
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
- 
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         let sentmemes = SentMemes.singleton
@@ -58,15 +58,14 @@ class TableViewController: UITableViewController {
     }
     
     
-
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+   
         let cell = tableView.cellForRowAtIndexPath(indexPath)!
-        var controller : MemeDetail
-        controller = self.storyboard?.instantiateViewControllerWithIdentifier("MemeDetail") as! MemeDetail
+        let controller = UIViewController()
         controller.view = cell.imageView
-        self.navigationController?.pushViewController(controller, animated: true)
-
+        navigationController?.pushViewController(controller, animated: true)
+        
         
         
     }

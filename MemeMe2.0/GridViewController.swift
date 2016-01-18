@@ -10,28 +10,27 @@ import UIKit
 
 class GridViewController: UICollectionViewController {
     
-   
+    
     override func viewWillAppear(animated: Bool) {
         
         
+        super.viewWillAppear(animated)
+        
         let sentmemes = SentMemes.singleton
         if let _ = sentmemes.memeArray {
-            self.collectionView?.reloadData()
+            collectionView?.reloadData()
         }
         
     }
+    
+    
 
-    
-    
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        
-        return 1
-        
-    }
     
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
+        
+        super.collectionView(collectionView, numberOfItemsInSection: section)
         
         let sentmemes = SentMemes.singleton
         if let _ = sentmemes.memeArray {
@@ -47,6 +46,8 @@ class GridViewController: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
+        super.collectionView(collectionView, cellForItemAtIndexPath: indexPath)
+        
         let item = collectionView.dequeueReusableCellWithReuseIdentifier("item", forIndexPath: indexPath)
         let sentmemes = SentMemes.singleton
         let meme = sentmemes.memeArray[indexPath.row]
@@ -60,10 +61,9 @@ class GridViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         let item = collectionView.cellForItemAtIndexPath(indexPath)
-        var controller : MemeDetail
-        controller = self.storyboard?.instantiateViewControllerWithIdentifier("MemeDetail") as! MemeDetail
-       controller.view=item?.backgroundView
-       self.navigationController?.pushViewController(controller, animated: true)
+        let controller = UIViewController()
+        controller.view=item?.backgroundView
+        navigationController?.pushViewController(controller, animated: true)
         
         
         

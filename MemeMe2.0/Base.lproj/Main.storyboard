@@ -51,9 +51,9 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ON4-Pa-71y">
                                 <rect key="frame" x="-10" y="20" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Share" id="PiM-h8-wHN">
+                                    <barButtonItem systemItem="action" id="PiM-h8-wHN">
                                         <connections>
-                                            <action selector="actionShare:" destination="BYZ-38-t0r" id="jAJ-UJ-WC8"/>
+                                            <action selector="shareAction:" destination="BYZ-38-t0r" id="tGU-Vx-TZT"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -84,14 +84,14 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="BottomTextFiled" destination="wuD-Au-ATa" id="mie-lH-bf1"/>
-                        <outlet property="TopTextFiled" destination="Zlr-zq-5DZ" id="HqA-nM-PkM"/>
                         <outlet property="albumButton" destination="9JJ-zr-qPw" id="aGc-qv-xCX"/>
                         <outlet property="appToolbar" destination="TTE-At-OvV" id="APP-xt-aJh"/>
                         <outlet property="appTopbar" destination="ON4-Pa-71y" id="4p8-34-ISe"/>
+                        <outlet property="bottomTextFiled" destination="wuD-Au-ATa" id="KWV-tp-THX"/>
                         <outlet property="cameraButton" destination="W9M-gy-r3y" id="dK1-9Z-Jpp"/>
                         <outlet property="imagePickerView" destination="jxm-j8-ARF" id="9dt-Sz-xJW"/>
                         <outlet property="shareButton" destination="PiM-h8-wHN" id="eCu-8j-AAw"/>
+                        <outlet property="topTextFiled" destination="Zlr-zq-5DZ" id="JQA-hz-JUf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -135,25 +135,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VDS-LQ-MLQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3920" y="124"/>
-        </scene>
-        <!--Meme Detail-->
-        <scene sceneID="zZH-vd-YfO">
-            <objects>
-                <viewController storyboardIdentifier="MemeDetail" id="tsh-TK-iE2" customClass="MemeDetail" customModule="MemeMe2_0" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="IRr-aU-eih"/>
-                        <viewControllerLayoutGuide type="bottom" id="PR9-Ah-7hP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="MqX-6a-Y4T">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Col-ZZ-5z1"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kHe-Ev-29P" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4900" y="1286"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="xDR-C6-CDH">
