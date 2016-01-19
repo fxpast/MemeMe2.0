@@ -73,6 +73,9 @@ class TableViewController: UITableViewController {
     }
     
     
+    
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         super.tableView(tableView, cellForRowAtIndexPath: indexPath)
@@ -83,6 +86,7 @@ class TableViewController: UITableViewController {
         cell.imageView?.image=meme.memedImage
         cell.textLabel?.text=meme.textTop + " " + meme.textBottom
         cell.textLabel?.textAlignment=NSTextAlignment.Center
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
         
     }
@@ -96,7 +100,6 @@ class TableViewController: UITableViewController {
         controller.view = cell.imageView
         controller.view.contentMode = UIViewContentMode.ScaleAspectFit
         navigationController?.pushViewController(controller, animated: true)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         
     }
