@@ -18,7 +18,7 @@ class EditorView: UIViewController, UITextFieldDelegate, UIImagePickerController
     
     
     
-    @IBOutlet weak var appTopbar: UIToolbar!
+    
     @IBOutlet weak var appToolbar: UIToolbar!
     @IBOutlet weak var albumButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -108,11 +108,26 @@ class EditorView: UIViewController, UITextFieldDelegate, UIImagePickerController
     
     //MARK: Action IB Button
     
+    
+    @IBAction func actionCancel(sender: AnyObject) {
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
     @IBAction func albumAction(sender: AnyObject) {
         
        imageFromCamera(false)
         
     }
+    
+    
+    @IBAction func cameraAction(sender: AnyObject) {
+        
+        imageFromCamera(true)
+        
+    }
+    
     
     
     @IBAction func shareAction(sender: AnyObject) {
@@ -142,13 +157,7 @@ class EditorView: UIViewController, UITextFieldDelegate, UIImagePickerController
     }
     
     
-    @IBAction func cameraAction(sender: AnyObject) {
-        
-       imageFromCamera(true)
-        
-    }
-    
-    
+
     func imageFromCamera(camera:Bool) {
         
         let imagePicker = UIImagePickerController()
@@ -185,7 +194,7 @@ class EditorView: UIViewController, UITextFieldDelegate, UIImagePickerController
         
         //Hide toolbar and navbar
         appToolbar.hidden = true
-        appTopbar.hidden = true
+    
         
         //Render view to an image
         UIGraphicsBeginImageContext(view.frame.size)
@@ -195,7 +204,7 @@ class EditorView: UIViewController, UITextFieldDelegate, UIImagePickerController
         
         //Show toolbar and navbar
         appToolbar.hidden = false
-        appTopbar.hidden = false
+       
         
         return memedimage
     }

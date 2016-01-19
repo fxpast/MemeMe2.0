@@ -12,6 +12,8 @@ import UIKit
 class TableViewController: UITableViewController {
     
     
+    @IBOutlet weak var buttonEdit: UIBarButtonItem!
+    
     
     override func viewWillAppear(animated: Bool) {
         
@@ -19,7 +21,11 @@ class TableViewController: UITableViewController {
         
         let sentmemes = SentMemes.singleton
         if let _ = sentmemes.memeArray {
+            buttonEdit.enabled=true
             tableView.reloadData()
+        }
+        else {
+            buttonEdit.enabled=false
         }
         
     }
@@ -27,7 +33,7 @@ class TableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-       super.tableView(tableView, numberOfRowsInSection: section)
+        super.tableView(tableView, numberOfRowsInSection: section)
         
         let sentmemes = SentMemes.singleton
         if let _ = sentmemes.memeArray {
@@ -39,8 +45,32 @@ class TableViewController: UITableViewController {
         
     }
     
-
     
+    override func setEditing(editing: Bool, animated: Bool) {
+        
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
+        
+    }
+    
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        //delete row
+        let sentmemes = SentMemes.singleton
+        if let _ = sentmemes.memeArray {
+            sentmemes.memeArray.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+            if sentmemes.memeArray.count == 0 {
+                buttonEdit.title="Edit"
+                buttonEdit.enabled=false
+                editing = false
+            }
+        }
+        
+        
+        
+    }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -52,7 +82,7 @@ class TableViewController: UITableViewController {
         let meme = sentmemes.memeArray[indexPath.row]
         cell.imageView?.image=meme.memedImage
         cell.textLabel?.text=meme.textTop + " " + meme.textBottom
-        cell.textLabel?.textAlignment=NSTextAlignment.Right
+        cell.textLabel?.textAlignment=NSTextAlignment.Center
         return cell
         
     }
@@ -60,13 +90,29 @@ class TableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-   
+        
         let cell = tableView.cellForRowAtIndexPath(indexPath)!
         let controller = UIViewController()
         controller.view = cell.imageView
         navigationController?.pushViewController(controller, animated: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         
+    }
+    
+    
+    @IBAction func ActionEdit(sender: AnyObject) {
+        
+        
+        
+        if buttonEdit.title == "Edit" {
+            editing=true
+            buttonEdit.title="Done"
+        }
+        else {
+            editing=false
+            buttonEdit.title="Edit"
+        }
         
     }
     

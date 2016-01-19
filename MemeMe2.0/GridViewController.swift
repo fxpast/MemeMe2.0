@@ -10,7 +10,7 @@ import UIKit
 
 class GridViewController: UICollectionViewController {
     
-    
+
     override func viewWillAppear(animated: Bool) {
         
         
@@ -54,6 +54,7 @@ class GridViewController: UICollectionViewController {
         let aView=UIImageView()
         aView.image=meme.memedImage
         item.backgroundView=aView
+
         return item
         
     }
