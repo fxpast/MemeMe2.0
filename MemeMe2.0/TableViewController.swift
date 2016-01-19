@@ -94,6 +94,7 @@ class TableViewController: UITableViewController {
         let cell = tableView.cellForRowAtIndexPath(indexPath)!
         let controller = UIViewController()
         controller.view = cell.imageView
+        controller.view.contentMode = UIViewContentMode.ScaleAspectFit
         navigationController?.pushViewController(controller, animated: true)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         

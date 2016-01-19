@@ -64,6 +64,7 @@ class GridViewController: UICollectionViewController {
         let item = collectionView.cellForItemAtIndexPath(indexPath)
         let controller = UIViewController()
         controller.view=item?.backgroundView
+        controller.view.contentMode = UIViewContentMode.ScaleAspectFit
         navigationController?.pushViewController(controller, animated: true)
         
         
